@@ -70,11 +70,20 @@ namespace Utilities
             return Enumerable.SequenceEqual(listA, listB);
         }
 
+        public static bool DoubleEquals(double a, double b)
+        {
+            return Math.Abs(a - b) < 0.00000001;
+        }
+
         public static int[] StringToIntArray (string line)
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
             List<int> res = new List<int>();
             foreach(string elementStr in elementStrs) {
+                if(string.IsNullOrEmpty(elementStr))
+                {
+                    continue;
+                }
                 res.Add(int.Parse(elementStr));
             }
 
