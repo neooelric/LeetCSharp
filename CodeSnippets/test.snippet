@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>leet code unit test class template</Title>
+            <Shortcut>leetcodetest</Shortcut>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+        </Header>
+        <Snippet>
+            <Declarations>
+                <Literal>
+                    <ID>ProblemNumber</ID>
+                    <ToolTip>Problem Number</ToolTip>
+                    <Default>0000</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="CSharp">
+                <![CDATA[
+                    using System;
+                    using System.Collections.Generic;
+                    using System.Linq;
+                    using System.Text;
+                    using Xunit;
+
+                    namespace Tests._$ProblemNumber$
+                    {
+                        public class TestCase
+                        {
+                            // properties
+
+                            public override string ToString()
+                            {
+                                // ToString
+                            }
+
+                            public static List<TestCase> ParseTestCaseFromTextFile(string filePath)
+                            {
+                                string[] fileContent = System.IO.File.ReadAllLines(filePath);
+
+                                List<TestCase> cases = new List<TestCase>();
+
+                                for(int i = 0; i < fileContent.Length; ++i)
+                                {
+                                    string line = fileContent[i];
+
+                                    /*
+                                    switch(i % ??)
+                                    {
+                                        case 0:
+                                            cases.Add(new TestCase());
+                                            //
+                                            break;
+                                        
+                                        //...
+
+                                        default:
+                                            break;
+                                    }
+                                    */
+                                }
+
+                                return cases;
+                            }
+                        }
+
+                        public class Test
+                        {
+                            [Fact]
+                            public void RunTestCases()
+                            {
+                                Solutions._$ProblemNumber$.Solution solution = new Solutions._$ProblemNumber$.Solution();
+
+                                List<TestCase> cases = TestCase.ParseTestCaseFromTextFile(@"./$ProblemNumber$.txt");
+
+                                foreach (TestCase c in cases)
+                                {
+                                    /*
+                                    string result = solution.??(??);
+
+                                    Assert.True(
+                                        ??,
+                                        string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
+                                    );
+                                    */
+                                }
+                            }
+                            
+                        }
+                    }
+                ]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
