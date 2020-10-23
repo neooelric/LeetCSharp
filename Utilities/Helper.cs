@@ -75,6 +75,21 @@ namespace Utilities
             return Math.Abs(a - b) < 0.00000001;
         }
 
+        public static string[] StringToStringArray(string line)
+        {
+            string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
+            List<string> res = new List<string>();
+            foreach (string elementStr in elementStrs)
+            {
+                if(string.IsNullOrEmpty(elementStr) || elementStr.Length < 2)
+                {
+                    continue;
+                }
+                res.Add(elementStr.Substring(1, elementStr.Length - 2));
+            }
+            return res.ToArray();
+        }
+
         public static int[] StringToIntArray (string line)
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
@@ -88,6 +103,26 @@ namespace Utilities
             }
 
             return res.ToArray();
+        }
+
+        public static string StringArrayToString(string[] array)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+
+            for(int i = 0; i < array.Length; ++i)
+            {
+                if (i != 0)
+                {
+                    sb.Append(",");
+                }
+
+                sb.AppendFormat("\"{0}\"", array[i]);
+            }
+            
+            sb.Append("]");
+
+            return sb.ToString();
         }
 
         public static string IntArrayToString (int[] array)
