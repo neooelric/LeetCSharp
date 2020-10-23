@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Utilities;
 using Xunit;
 
 namespace Tests._0006
@@ -30,13 +31,13 @@ namespace Tests._0006
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().S = line;
+                        cases.Last().S = Helper.ParseString(line);
                         break;
                     case 1:
-                        cases.Last().NumRows = int.Parse(line);
+                        cases.Last().NumRows = Helper.ParseInt(line);
                         break;
                     case 2:
-                        cases.Last().Output = line;
+                        cases.Last().Output = Helper.ParseString(line);
                         break;
                     default:
                         break;
@@ -61,7 +62,7 @@ namespace Tests._0006
                 string result = solution.Convert(c.S, c.NumRows);
 
                 Assert.True(
-                    string.Compare(c.Output, result) == 0,
+                    Helper.Equals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

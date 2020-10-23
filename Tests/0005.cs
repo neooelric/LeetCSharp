@@ -9,11 +9,11 @@ namespace Tests._0005
     public class TestCase
     {
         public string S { get; set; }
-        public string Output { get; set; }
+        public string[] PossibleOutput { get; set; }
 
         public override string ToString()
         {
-            return string.Format("S:{0}, Output:{1}", S, Output);
+            return string.Format("S:{0}, PossibleOutput:{1}", S, PossibleOutput);
         }
 
         public static List<TestCase> ParseTestCasesFromTextFile(string filePath)
@@ -31,10 +31,10 @@ namespace Tests._0005
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().S = line;
+                        cases.Last().S = Helper.ParseString(line);
                         break;
                     case 1:
-                        cases.Last().Output = line;
+                        cases.Last().PossibleOutput = Helper.ParseStringArray(line);
                         break;
                     default:
                         break;
@@ -58,7 +58,7 @@ namespace Tests._0005
                 string result = solution.LongestPalindrome(c.S);
 
                 Assert.True(
-                    c.Output.Split(" ").Contains(result),
+                    c.PossibleOutput.Contains(result),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

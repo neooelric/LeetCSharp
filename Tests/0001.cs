@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Utilities;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -17,9 +18,9 @@ namespace Tests._0001
         {
             return string.Format(
                 "Nums:{0}, Target:{1}, Output:{2}",
-                Utilities.Helper.IntArrayToString(Nums),
+                Helper.FormatIntArray(Nums),
                 Target,
-                Utilities.Helper.IntArrayToString(Output)
+                Helper.FormatIntArray(Output)
             );
         }
 
@@ -37,13 +38,13 @@ namespace Tests._0001
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().Nums = Utilities.Helper.StringToIntArray(line);
+                        cases.Last().Nums = Helper.ParseIntArray(line);
                         break;
                     case 1:
-                        cases.Last().Target = int.Parse(line);
+                        cases.Last().Target = Helper.ParseInt(line);
                         break;
                     case 2:
-                        cases.Last().Output = Utilities.Helper.StringToIntArray(line); ;
+                        cases.Last().Output = Helper.ParseIntArray(line); ;
                         break;
                     default:
                         break;
@@ -66,8 +67,9 @@ namespace Tests._0001
                 int[] result = solution.TwoSum(c.Nums, c.Target);
 
                 Assert.True(
-                    Utilities.Helper.IntArrayEqualsRegardlessOfOrder(result, c.Output),
-                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Utilities.Helper.IntArrayToString(result)));
+                    Helper.IntArrayEqualsRegardlessOfOrder(result, c.Output),
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatIntArray(result))
+                    );
             }
         }
     }

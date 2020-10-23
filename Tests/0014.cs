@@ -15,7 +15,7 @@ namespace Tests._0014
 
         public override string ToString()
         {
-            return string.Format("Strs:{0}, Output:{1}", Helper.StringArrayToString(Strs), Output);
+            return string.Format("Strs:{0}, Output:{1}", Helper.FormatStringArray(Strs), Output);
         }
 
         public static List<TestCase> ParseTestCaseFromTextFile(string filePath)
@@ -32,10 +32,10 @@ namespace Tests._0014
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().Strs = Helper.StringToStringArray(line);
+                        cases.Last().Strs = Helper.ParseStringArray(line);
                         break;
                     case 1:
-                        cases.Last().Output = line;
+                        cases.Last().Output = Helper.ParseString(line);
                         break;
                     default:
                         break;
@@ -60,9 +60,9 @@ namespace Tests._0014
                 string result = solution.LongestCommonPrefix(c.Strs);
 
                 Assert.True(
-                    string.Compare(result, c.Output) == 0,
+                    Helper.Equals(result, c.Output),
                     string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
-                );
+                    );
             }
         }
 

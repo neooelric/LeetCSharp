@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Utilities;
 using Xunit;
 
 namespace Tests._0008
@@ -31,11 +32,11 @@ namespace Tests._0008
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().S = line;
+                        cases.Last().S = Helper.ParseString(line);
                         break;
 
                     case 1:
-                        cases.Last().Output = int.Parse(line);
+                        cases.Last().Output = Helper.ParseInt(line);
                         break;
 
                     default:
@@ -61,9 +62,9 @@ namespace Tests._0008
                 int result = solution.MyAtoi(c.S);
 
                 Assert.True(
-                    c.Output == result,
+                    Helper.Equals(result, c.Output),
                     string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
-                );
+                    );
             }
         }
 

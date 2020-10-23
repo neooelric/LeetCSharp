@@ -57,7 +57,7 @@ namespace Utilities
             return Enumerable.SequenceEqual(listA, listB);
         }
 
-        public static bool IntArrayEquals(int[] arrA, int[] arrB)
+        public static bool Equals(int[] arrA, int[] arrB)
         {
             if(arrA.Length != arrB.Length)
             {
@@ -70,12 +70,47 @@ namespace Utilities
             return Enumerable.SequenceEqual(listA, listB);
         }
 
-        public static bool DoubleEquals(double a, double b)
+        public static bool Equals(double a, double b)
         {
             return Math.Abs(a - b) < 0.00000001;
         }
 
-        public static string[] StringToStringArray(string line)
+        public static bool Equals(string a, string b)
+        {
+            return string.Compare(a, b) == 0;
+        }
+
+        public static bool Equals(int a, int b)
+        {
+            return a == b;
+        }
+
+        public static bool Equals(bool a, bool b)
+        {
+            return a == b;
+        }
+
+        public static string ParseString(string line)
+        {
+            return line.Substring(1, line.Length - 2);
+        }
+
+        public static int ParseInt(string line)
+        {
+            return int.Parse(line);
+        }
+
+        public static double ParseDouble(string line)
+        {
+            return double.Parse(line);
+        }
+
+        public static bool ParseBool(string line)
+        {
+            return bool.Parse(line);
+        }
+
+        public static string[] ParseStringArray(string line)
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
             List<string> res = new List<string>();
@@ -90,7 +125,7 @@ namespace Utilities
             return res.ToArray();
         }
 
-        public static int[] StringToIntArray (string line)
+        public static int[] ParseIntArray (string line)
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
             List<int> res = new List<int>();
@@ -105,7 +140,7 @@ namespace Utilities
             return res.ToArray();
         }
 
-        public static string StringArrayToString(string[] array)
+        public static string FormatStringArray(string[] array)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
@@ -125,7 +160,7 @@ namespace Utilities
             return sb.ToString();
         }
 
-        public static string IntArrayToString (int[] array)
+        public static string FormatIntArray (int[] array)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
@@ -145,7 +180,7 @@ namespace Utilities
             return sb.ToString();
         }
 
-        public static ListNode StringToLinkedList(string line)
+        public static ListNode ParseLinkedList(string line)
         {
             ListNode head = null;
             ListNode tail = null;
@@ -167,7 +202,7 @@ namespace Utilities
             return head;
         }
 
-        public static string LinkedListToString(ListNode head)
+        public static string FormatLinkedList(ListNode head)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Utilities;
 using Utilities.LeetCodeDefinitions;
 using Xunit;
 
@@ -16,9 +17,9 @@ namespace Tests._0002
         {
             return string.Format(
                 "L1:{0}, L2:{1}, Output:{2}",
-                Utilities.Helper.LinkedListToString(L1),
-                Utilities.Helper.LinkedListToString(L2),
-                Utilities.Helper.LinkedListToString(Output)
+                Helper.FormatLinkedList(L1),
+                Helper.FormatLinkedList(L2),
+                Helper.FormatLinkedList(Output)
             );
         }
 
@@ -35,13 +36,13 @@ namespace Tests._0002
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().L1 = Utilities.Helper.StringToLinkedList(line);
+                        cases.Last().L1 = Helper.ParseLinkedList(line);
                         break;
                     case 1:
-                        cases.Last().L2 = Utilities.Helper.StringToLinkedList(line);
+                        cases.Last().L2 = Helper.ParseLinkedList(line);
                         break;
                     case 2:
-                        cases.Last().Output = Utilities.Helper.StringToLinkedList(line);
+                        cases.Last().Output = Helper.ParseLinkedList(line);
                         break;
                     default:
                         break;
@@ -65,9 +66,9 @@ namespace Tests._0002
                 ListNode result = solution.AddTwoNumbers(c.L1, c.L2);
 
                 Assert.True(
-                    Utilities.Helper.LinkedListEquals(result, c.Output),
-                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Utilities.Helper.LinkedListToString(result))
-                );
+                    Helper.LinkedListEquals(result, c.Output),
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
+                    );
             }
 
         }

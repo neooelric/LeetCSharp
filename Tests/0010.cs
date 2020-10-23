@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Utilities;
 using Xunit;
 
 namespace Tests._0010
@@ -32,13 +33,13 @@ namespace Tests._0010
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().S = line;
+                        cases.Last().S = Helper.ParseString(line);
                         break;
                     case 1:
-                        cases.Last().P = line;
+                        cases.Last().P = Helper.ParseString(line);
                         break;
                     case 2:
-                        cases.Last().Output = bool.Parse(line);
+                        cases.Last().Output = Helper.ParseBool(line);
                         break;
                     default:
                         break;
@@ -63,9 +64,9 @@ namespace Tests._0010
                 bool result = solution.IsMatch(c.S, c.P);
 
                 Assert.True(
-                    result == c.Output,
+                    Helper.Equals(result, c.Output),
                     string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
-                );
+                    );
             }
         }
 

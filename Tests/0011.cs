@@ -15,7 +15,7 @@ namespace Tests._0011
 
         public override string ToString()
         {
-            return string.Format("Height:{0}, Output:{1}", Helper.IntArrayToString(Height), Output);
+            return string.Format("Height:{0}, Output:{1}", Helper.FormatIntArray(Height), Output);
         }
 
         public static List<TestCase> ParseTestCaseFromTextFile(string filePath)
@@ -32,10 +32,10 @@ namespace Tests._0011
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().Height = Helper.StringToIntArray(line);
+                        cases.Last().Height = Helper.ParseIntArray(line);
                         break;
                     case 1:
-                        cases.Last().Output = int.Parse(line);
+                        cases.Last().Output = Helper.ParseInt(line);
                         break;
                     default:
                         break;
@@ -60,9 +60,9 @@ namespace Tests._0011
                 int result = solution.MaxArea(c.Height);
 
                 Assert.True(
-                    result == c.Output,
+                    Helper.Equals(result, c.Output),
                     string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
-                );
+                    );
             }
         }
 

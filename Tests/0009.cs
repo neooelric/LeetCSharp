@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Utilities;
 using Xunit;
 
 namespace Tests._0009
@@ -31,10 +32,10 @@ namespace Tests._0009
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().X = int.Parse(line);
+                        cases.Last().X = Helper.ParseInt(line);
                         break;
                     case 1:
-                        cases.Last().Output = bool.Parse(line);
+                        cases.Last().Output = Helper.ParseBool(line);
                         break;
                     default:
                         break;
@@ -59,9 +60,9 @@ namespace Tests._0009
                 bool result = solution.IsPalindrome(c.X);
 
                 Assert.True(
-                    result == c.Output,
+                    Helper.Equals(result, c.Output),
                     string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
-                );
+                    );
             }
         }
 

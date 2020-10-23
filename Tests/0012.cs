@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Utilities;
 using Xunit;
 
 namespace Tests._0012
@@ -31,10 +32,10 @@ namespace Tests._0012
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().Num = int.Parse(line);
+                        cases.Last().Num = Helper.ParseInt(line);
                         break;
                     case 1:
-                        cases.Last().Output = line;
+                        cases.Last().Output = Helper.ParseString(line);
                         break;
                     default:
                         break;
@@ -59,9 +60,9 @@ namespace Tests._0012
                 string result = solution.IntToRoman(c.Num);
 
                 Assert.True(
-                    string.Compare(result, c.Output) == 0,
+                    Helper.Equals(result, c.Output),
                     string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
-                );
+                    );
             }
         }
 

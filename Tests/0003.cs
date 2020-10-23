@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using Utilities;
 using Xunit;
 
 namespace Tests._0003
@@ -29,10 +30,10 @@ namespace Tests._0003
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().S = line;
+                        cases.Last().S = Helper.ParseString(line);
                         break;
                     case 1:
-                        cases.Last().Output = int.Parse(line);
+                        cases.Last().Output = Helper.ParseInt(line);
                         break;
                     default:
                         break;
@@ -55,7 +56,10 @@ namespace Tests._0003
             {
                 int result = solution.LengthOfLongestSubstring(c.S);
 
-                Assert.True(result == c.Output, string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result));
+                Assert.True(
+                    Helper.Equals(result, c.Output),
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
+                    );
             }
         }
     }

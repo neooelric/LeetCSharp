@@ -16,8 +16,8 @@ namespace Tests._0004
         {
             return string.Format(
                 "Nums1:{0}, Nums2:{1}, Median:{2}",
-                Helper.IntArrayToString(Nums1),
-                Helper.IntArrayToString(Nums2),
+                Helper.FormatIntArray(Nums1),
+                Helper.FormatIntArray(Nums2),
                 Median);
         }
 
@@ -35,13 +35,13 @@ namespace Tests._0004
                 {
                     case 0:
                         cases.Add(new TestCase());
-                        cases.Last().Nums1 = Helper.StringToIntArray(line);
+                        cases.Last().Nums1 = Helper.ParseIntArray(line);
                         break;
                     case 1:
-                        cases.Last().Nums2 = Helper.StringToIntArray(line);
+                        cases.Last().Nums2 = Helper.ParseIntArray(line);
                         break;
                     case 2:
-                        cases.Last().Median = double.Parse(line);
+                        cases.Last().Median = Helper.ParseDouble(line);
                         break;
                     default:
                         break;
@@ -64,7 +64,10 @@ namespace Tests._0004
                 {
                     double result = solution.FindMedianSortedArrays(c.Nums1, c.Nums2);
 
-                    Assert.True(Helper.DoubleEquals(result, c.Median), string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result));
+                    Assert.True(
+                        Helper.Equals(result, c.Median),
+                        string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
+                        );
                 }
             }
         }
