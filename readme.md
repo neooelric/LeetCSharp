@@ -2,9 +2,10 @@
 
 This is a LeetCode CSharp Solutions repository.
 
-0. all solution are written by CSharp and tested in my laptop(dotnet core 3.1), and passed the LeetCode test cases (obviously).
-0. for each LeetCode problem, this repo only offers one solution : not the best, just the normal/main-stream solution.
-0. I'll try my best to coding decent and readable code, comments will only occurred in problems that are really complex and difficult.
+0. All solution are written by CSharp and tested in my laptop(with dotnet core 3.1), and passed the LeetCode test cases (obviously).
+0. For each problem, this repo only offers one solution : not the best, just the normal/main-stream solution. if there is two ways to solve a problem, one is faster but the code logic is kind of twisted and hard to explain, one is slower but the train of thoughts is more unstandable, i'll use the slower one.
+0. I'll write the general train of thoughts in each solution code file's top position, except for those really simple problems
+0. I'll try my best to write decent and readable code to avoid tedious comments inside method blocks, especially thoses comments just explain the code logic.
 
 # Project Structure
 
@@ -35,6 +36,9 @@ RootDirectory
     \---Helper.cs                 // helper functions used by unit-test project, such as parse test-cases text file, compare array or linked-list etc...
     \---LeetCodeDefinitions.cs    // all fundemental data-structure definitions in here, such as ListNode
     \---Utilities.csproj          // dotnet core project definition file
+\---CodeSnippets              // code snippets definitions that'll help me to write boring unit-test, you can just ignore this directory
+    \---...
+
 
 ```
 
