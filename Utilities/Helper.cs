@@ -43,6 +43,15 @@ namespace Utilities
 
         public static bool IntArrayEqualsRegardlessOfOrder(int[] arrA, int[] arrB)
         {
+            if(arrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (arrA == null || arrB == null)
+            {
+                return false;
+            }
+
             if(arrA.Length != arrB.Length)
             {
                 return false;
@@ -57,8 +66,129 @@ namespace Utilities
             return Enumerable.SequenceEqual(listA, listB);
         }
 
+        public static bool StringArrayEqualsRegardlessOfOrder(string[] arrA, string[] arrB)
+        {
+            if(arrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (arrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            if(arrA.Length != arrB.Length)
+            {
+                return false;
+            }
+
+            List<string> listA = new List<string>(arrA);
+            List<string> listB = new List<string>(arrB);
+
+            listA.Sort();
+            listB.Sort();
+
+            for(int i = 0; i < listA.Count; ++i)
+            {
+                if(!Equals(listA[i], listB[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool Int2DArrayEqualsRegardlessOfOrder(IList<IList<int>> IListArrA, int[][] arrB)
+        {
+            if(IListArrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (IListArrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            List<int[]> IListIntArrA = new List<int[]>();
+            foreach(IList<int> subArr in IListArrA)
+            {
+                IListIntArrA.Add(subArr.ToArray());
+            }
+
+            return Int2DArrayEqualsRegardlessOfOrder(IListIntArrA.ToArray(), arrB);
+        }
+
+        public static bool Int2DArrayEqualsRegardlessOfOrder(int[][] arrA, int[][] arrB)
+        {
+            if(arrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (arrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            if(arrA.Length != arrB.Length)
+            {
+                return false;
+            }
+
+            List<int[]> listA = new List<int[]>(arrA);
+            List<int[]> listB = new List<int[]>(arrB);
+
+            IComparer<int[]> comparer = Comparer<int[]>.Create((int[] left, int[] right) =>
+            {
+                if(left == null && right == null)
+                {
+                    return 0;
+                }
+                if(left == null || right == null)
+                {
+                    return left == null ? -1 : 1;
+                }
+                if(left.Length != right.Length)
+                {
+                    return left.Length - right.Length;
+                }
+                for(int i = 0; i < left.Length; ++i)
+                {
+                    int res = left[i] - right[i];
+                    if(res != 0)
+                    {
+                        return res;
+                    }
+                }
+
+                return 0;
+            });
+
+            listA.Sort(comparer);
+            listB.Sort(comparer);
+
+            for(int i = 0; i < listA.Count; ++i)
+            {
+                if(!IntArrayEqualsRegardlessOfOrder(listA[i], listB[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public static bool Equals(int[] arrA, int[] arrB)
         {
+            if(arrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (arrA == null || arrB == null)
+            {
+                return false;
+            }
+
             if(arrA.Length != arrB.Length)
             {
                 return false;
@@ -68,6 +198,33 @@ namespace Utilities
             List<int> listB = new List<int>(arrB);
 
             return Enumerable.SequenceEqual(listA, listB);
+        }
+
+        public static bool Equals(string[] arrA, int[] arrB)
+        {
+            if(arrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (arrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            if(arrA.Length != arrB.Length)
+            {
+                return false;
+            }
+
+            for(int i = 0; i < arrA.Length; ++i)
+            {
+                if (!Equals(arrA[i], arrB[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public static bool Equals(double a, double b)
@@ -129,7 +286,8 @@ namespace Utilities
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
             List<int> res = new List<int>();
-            foreach(string elementStr in elementStrs) {
+            foreach(string elementStr in elementStrs) 
+            {
                 if(string.IsNullOrEmpty(elementStr))
                 {
                     continue;
@@ -138,6 +296,30 @@ namespace Utilities
             }
 
             return res.ToArray();
+        }
+
+        public static int[][] ParseInt2DArray(string line)
+        {
+            string[] elementStrs = line.Substring(1, line.Length - 2).Split("],");
+            List<int[]> res = new List<int[]>();
+            foreach(string elementStr in elementStrs) 
+            {
+                if(string.IsNullOrEmpty(elementStr))
+                {
+                    continue;
+                }
+                if (elementStr.EndsWith("]"))
+                {
+                    res.Add(ParseIntArray(elementStr));
+                }
+                else
+                {
+                    res.Add(ParseIntArray(elementStr + "]"));
+                }
+            }
+
+            return res.ToArray();
+
         }
 
         public static string FormatStringArray(string[] array)
@@ -175,6 +357,47 @@ namespace Utilities
                 sb.AppendFormat("{0}", array[i]);
             }
             
+            sb.Append("]");
+
+            return sb.ToString();
+        }
+
+        public static string FormatInt2DArray(IList<IList<int>> array)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+
+            for(int i = 0; i < array.Count; ++i)
+            {
+                if(i != 0)
+                {
+                    sb.Append(",");
+                }
+
+                sb.Append(FormatIntArray(array[i].ToArray()));
+            }
+
+            sb.Append("]");
+
+            return sb.ToString();
+
+        }
+
+        public static string FormatInt2DArray(int[][] array)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+
+            for(int i = 0; i < array.Length; ++i)
+            {
+                if(i != 0)
+                {
+                    sb.Append(",");
+                }
+
+                sb.Append(FormatIntArray(array[i]));
+            }
+
             sb.Append("]");
 
             return sb.ToString();
