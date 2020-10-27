@@ -409,7 +409,13 @@ namespace Utilities
             ListNode tail = null;
 
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
-            foreach(string elementStr in elementStrs) {
+            foreach(string elementStr in elementStrs) 
+            {
+                if(string.IsNullOrEmpty(elementStr))
+                {
+                    continue;
+                }
+
                 int number = int.Parse(elementStr);
                 if(head == null)
                 {
