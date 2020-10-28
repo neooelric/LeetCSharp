@@ -10,14 +10,14 @@ namespace Utilities
     {
         public static ListNode DupLinkedList(ListNode l)
         {
-            if(l == null)
+            if (l == null)
             {
                 return l;
             }
 
             ListNode dupL = new ListNode(l.val, null);
 
-            for(ListNode p = l.next, q = dupL; p != null; p = p.next, q = q.next)
+            for (ListNode p = l.next, q = dupL; p != null; p = p.next, q = q.next)
             {
                 q.next = new ListNode(p.val, null);
             }
@@ -25,21 +25,42 @@ namespace Utilities
             return dupL;
         }
 
+        public static ListNode[] DupLinkedListArray(ListNode[] lists)
+        {
+            if (lists == null)
+            {
+                return null;
+            }
+
+            if (lists.Length == 0)
+            {
+                return new ListNode[0];
+            }
+
+            ListNode[] res = new ListNode[lists.Length];
+            for (int i = 0; i < lists.Length; ++i)
+            {
+                res[i] = DupLinkedList(lists[i]);
+            }
+
+            return res;
+        }
+
         public static bool Equals(ListNode l1, ListNode l2)
         {
-            if(l1 == null && l2 == null)
+            if (l1 == null && l2 == null)
             {
                 return true;
             }
 
-            if(l1 == null || l2 == null)
+            if (l1 == null || l2 == null)
             {
                 return false;
             }
 
-            while(l1 != null && l2 != null)
+            while (l1 != null && l2 != null)
             {
-                if(l1.val != l2.val)
+                if (l1.val != l2.val)
                 {
                     return false;
                 }
@@ -48,7 +69,7 @@ namespace Utilities
                 l2 = l2.next;
             }
 
-            if(l1 == null && l2 == null)
+            if (l1 == null && l2 == null)
             {
                 return true;
             }
@@ -60,7 +81,7 @@ namespace Utilities
 
         public static bool IntArrayEqualsRegardlessOfOrder(int[] arrA, int[] arrB)
         {
-            if(arrA == null && arrB == null)
+            if (arrA == null && arrB == null)
             {
                 return true;
             }
@@ -69,7 +90,7 @@ namespace Utilities
                 return false;
             }
 
-            if(arrA.Length != arrB.Length)
+            if (arrA.Length != arrB.Length)
             {
                 return false;
             }
@@ -85,7 +106,7 @@ namespace Utilities
 
         public static bool StringArrayEqualsRegardlessOfOrder(string[] arrA, string[] arrB)
         {
-            if(arrA == null && arrB == null)
+            if (arrA == null && arrB == null)
             {
                 return true;
             }
@@ -94,7 +115,7 @@ namespace Utilities
                 return false;
             }
 
-            if(arrA.Length != arrB.Length)
+            if (arrA.Length != arrB.Length)
             {
                 return false;
             }
@@ -105,9 +126,9 @@ namespace Utilities
             listA.Sort();
             listB.Sort();
 
-            for(int i = 0; i < listA.Count; ++i)
+            for (int i = 0; i < listA.Count; ++i)
             {
-                if(!Equals(listA[i], listB[i]))
+                if (!Equals(listA[i], listB[i]))
                 {
                     return false;
                 }
@@ -118,7 +139,7 @@ namespace Utilities
 
         public static bool Int2DArrayEqualsRegardlessOfOrder(IList<IList<int>> IListArrA, int[][] arrB)
         {
-            if(IListArrA == null && arrB == null)
+            if (IListArrA == null && arrB == null)
             {
                 return true;
             }
@@ -128,7 +149,7 @@ namespace Utilities
             }
 
             List<int[]> IListIntArrA = new List<int[]>();
-            foreach(IList<int> subArr in IListArrA)
+            foreach (IList<int> subArr in IListArrA)
             {
                 IListIntArrA.Add(subArr.ToArray());
             }
@@ -138,7 +159,7 @@ namespace Utilities
 
         public static bool Int2DArrayEqualsRegardlessOfOrder(int[][] arrA, int[][] arrB)
         {
-            if(arrA == null && arrB == null)
+            if (arrA == null && arrB == null)
             {
                 return true;
             }
@@ -147,7 +168,7 @@ namespace Utilities
                 return false;
             }
 
-            if(arrA.Length != arrB.Length)
+            if (arrA.Length != arrB.Length)
             {
                 return false;
             }
@@ -157,22 +178,22 @@ namespace Utilities
 
             IComparer<int[]> comparer = Comparer<int[]>.Create((int[] left, int[] right) =>
             {
-                if(left == null && right == null)
+                if (left == null && right == null)
                 {
                     return 0;
                 }
-                if(left == null || right == null)
+                if (left == null || right == null)
                 {
                     return left == null ? -1 : 1;
                 }
-                if(left.Length != right.Length)
+                if (left.Length != right.Length)
                 {
                     return left.Length - right.Length;
                 }
-                for(int i = 0; i < left.Length; ++i)
+                for (int i = 0; i < left.Length; ++i)
                 {
                     int res = left[i] - right[i];
-                    if(res != 0)
+                    if (res != 0)
                     {
                         return res;
                     }
@@ -184,9 +205,9 @@ namespace Utilities
             listA.Sort(comparer);
             listB.Sort(comparer);
 
-            for(int i = 0; i < listA.Count; ++i)
+            for (int i = 0; i < listA.Count; ++i)
             {
-                if(!IntArrayEqualsRegardlessOfOrder(listA[i], listB[i]))
+                if (!IntArrayEqualsRegardlessOfOrder(listA[i], listB[i]))
                 {
                     return false;
                 }
@@ -197,7 +218,7 @@ namespace Utilities
 
         public static bool Equals(int[] arrA, int[] arrB)
         {
-            if(arrA == null && arrB == null)
+            if (arrA == null && arrB == null)
             {
                 return true;
             }
@@ -206,7 +227,7 @@ namespace Utilities
                 return false;
             }
 
-            if(arrA.Length != arrB.Length)
+            if (arrA.Length != arrB.Length)
             {
                 return false;
             }
@@ -219,7 +240,7 @@ namespace Utilities
 
         public static bool Equals(string[] arrA, int[] arrB)
         {
-            if(arrA == null && arrB == null)
+            if (arrA == null && arrB == null)
             {
                 return true;
             }
@@ -228,12 +249,12 @@ namespace Utilities
                 return false;
             }
 
-            if(arrA.Length != arrB.Length)
+            if (arrA.Length != arrB.Length)
             {
                 return false;
             }
 
-            for(int i = 0; i < arrA.Length; ++i)
+            for (int i = 0; i < arrA.Length; ++i)
             {
                 if (!Equals(arrA[i], arrB[i]))
                 {
@@ -290,7 +311,7 @@ namespace Utilities
             List<string> res = new List<string>();
             foreach (string elementStr in elementStrs)
             {
-                if(string.IsNullOrEmpty(elementStr) || elementStr.Length < 2)
+                if (string.IsNullOrEmpty(elementStr) || elementStr.Length < 2)
                 {
                     continue;
                 }
@@ -299,13 +320,13 @@ namespace Utilities
             return res.ToArray();
         }
 
-        public static int[] ParseIntArray (string line)
+        public static int[] ParseIntArray(string line)
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
             List<int> res = new List<int>();
-            foreach(string elementStr in elementStrs) 
+            foreach (string elementStr in elementStrs)
             {
-                if(string.IsNullOrEmpty(elementStr))
+                if (string.IsNullOrEmpty(elementStr))
                 {
                     continue;
                 }
@@ -315,13 +336,36 @@ namespace Utilities
             return res.ToArray();
         }
 
+        public static ListNode[] ParseLinkedListArray(string line)
+        {
+            string[] elementStrs = line.Substring(1, line.Length - 2).Split("],");
+            List<ListNode> res = new List<ListNode>();
+            foreach (string elementStr in elementStrs)
+            {
+                if (string.IsNullOrEmpty(elementStr))
+                {
+                    continue;
+                }
+                if (elementStr.EndsWith("]"))
+                {
+                    res.Add(ParseLinkedList(elementStr));
+                }
+                else
+                {
+                    res.Add(ParseLinkedList(elementStr + "]"));
+                }
+            }
+
+            return res.ToArray();
+        }
+
         public static int[][] ParseInt2DArray(string line)
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split("],");
             List<int[]> res = new List<int[]>();
-            foreach(string elementStr in elementStrs) 
+            foreach (string elementStr in elementStrs)
             {
-                if(string.IsNullOrEmpty(elementStr))
+                if (string.IsNullOrEmpty(elementStr))
                 {
                     continue;
                 }
@@ -339,12 +383,32 @@ namespace Utilities
 
         }
 
+        public static string FormatLinkedListArray(ListNode[] lists)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+
+            for (int i = 0; i < lists.Length; ++i)
+            {
+                if (i != 0)
+                {
+                    sb.Append(",");
+                }
+
+                sb.AppendFormat("{0}", FormatLinkedList(lists[i]));
+            }
+
+            sb.Append("]");
+
+            return sb.ToString();
+        }
+
         public static string FormatStringArray(string[] array)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
 
-            for(int i = 0; i < array.Length; ++i)
+            for (int i = 0; i < array.Length; ++i)
             {
                 if (i != 0)
                 {
@@ -353,18 +417,18 @@ namespace Utilities
 
                 sb.AppendFormat("\"{0}\"", array[i]);
             }
-            
+
             sb.Append("]");
 
             return sb.ToString();
         }
 
-        public static string FormatIntArray (int[] array)
+        public static string FormatIntArray(int[] array)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
 
-            for(int i = 0; i < array.Length; ++i)
+            for (int i = 0; i < array.Length; ++i)
             {
                 if (i != 0)
                 {
@@ -373,7 +437,7 @@ namespace Utilities
 
                 sb.AppendFormat("{0}", array[i]);
             }
-            
+
             sb.Append("]");
 
             return sb.ToString();
@@ -384,9 +448,9 @@ namespace Utilities
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
 
-            for(int i = 0; i < array.Count; ++i)
+            for (int i = 0; i < array.Count; ++i)
             {
-                if(i != 0)
+                if (i != 0)
                 {
                     sb.Append(",");
                 }
@@ -405,9 +469,9 @@ namespace Utilities
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
 
-            for(int i = 0; i < array.Length; ++i)
+            for (int i = 0; i < array.Length; ++i)
             {
-                if(i != 0)
+                if (i != 0)
                 {
                     sb.Append(",");
                 }
@@ -426,15 +490,15 @@ namespace Utilities
             ListNode tail = null;
 
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
-            foreach(string elementStr in elementStrs) 
+            foreach (string elementStr in elementStrs)
             {
-                if(string.IsNullOrEmpty(elementStr))
+                if (string.IsNullOrEmpty(elementStr))
                 {
                     continue;
                 }
 
                 int number = int.Parse(elementStr);
-                if(head == null)
+                if (head == null)
                 {
                     tail = head = new ListNode(number, null);
                 }
@@ -453,9 +517,9 @@ namespace Utilities
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
 
-            for(ListNode i = head; i != null; i = i.next)
+            for (ListNode i = head; i != null; i = i.next)
             {
-                if(i != head)
+                if (i != head)
                 {
                     sb.Append(",");
                 }
