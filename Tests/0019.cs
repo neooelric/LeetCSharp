@@ -62,10 +62,10 @@ namespace Tests._0019
 
             foreach (TestCase c in cases)
             {
-                var result = solution.RemoveNthFromEnd(c.Head, c.N);
+                var result = solution.RemoveNthFromEnd(Helper.DupLinkedList(c.Head), c.N);
 
                 Assert.True(
-                    Helper.LinkedListEquals(result, c.Output),
+                    Helper.Equals(result, c.Output),
                     string.Format("Case{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
                     );
             }

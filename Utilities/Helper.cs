@@ -8,7 +8,24 @@ namespace Utilities
 {
     public class Helper
     {
-        public static bool LinkedListEquals(ListNode l1, ListNode l2)
+        public static ListNode DupLinkedList(ListNode l)
+        {
+            if(l == null)
+            {
+                return l;
+            }
+
+            ListNode dupL = new ListNode(l.val, null);
+
+            for(ListNode p = l.next, q = dupL; p != null; p = p.next, q = q.next)
+            {
+                q.next = new ListNode(p.val, null);
+            }
+
+            return dupL;
+        }
+
+        public static bool Equals(ListNode l1, ListNode l2)
         {
             if(l1 == null && l2 == null)
             {

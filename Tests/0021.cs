@@ -1,29 +1,26 @@
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Utilities;
 using Utilities.LeetCodeDefinitions;
 using Xunit;
 
-namespace Tests._0002
+namespace Tests._0021
 {
     public class TestCase
     {
         public ListNode L1 { get; set; }
         public ListNode L2 { get; set; }
-
         public ListNode Output { get; set; }
 
         public override string ToString()
         {
-            return string.Format(
-                "L1:{0}, L2:{1}, Output:{2}",
-                Helper.FormatLinkedList(L1),
-                Helper.FormatLinkedList(L2),
-                Helper.FormatLinkedList(Output)
-            );
+            return string.Format("L1:{0}, L2{1}, Output:{2}", Helper.FormatLinkedList(L1), Helper.FormatLinkedList(L2), Helper.FormatLinkedList(Output));
         }
 
-        public static List<TestCase> ParseTestCasesFromTextFile(string filePath)
+        public static List<TestCase> ParseTestCaseFromTextFile(string filePath)
         {
             string[] fileContent = System.IO.File.ReadAllLines(filePath);
 
@@ -32,6 +29,7 @@ namespace Tests._0002
             for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
+
                 switch (i % 4)
                 {
                     case 0:
@@ -58,19 +56,20 @@ namespace Tests._0002
         [Fact]
         public void RunTestCases()
         {
-            Solutions._0002.Solution solution = new Solutions._0002.Solution();
-            List<TestCase> cases = TestCase.ParseTestCasesFromTextFile(@"./0002.txt");
+            Solutions._0021.Solution solution = new Solutions._0021.Solution();
 
-            foreach(TestCase c in cases)
+            List<TestCase> cases = TestCase.ParseTestCaseFromTextFile(@"./0021.txt");
+
+            foreach (TestCase c in cases)
             {
-                ListNode result = solution.AddTwoNumbers(Helper.DupLinkedList(c.L1), Helper.DupLinkedList(c.L2));
+                var result = solution.MergeTwoLists(Helper.DupLinkedList(c.L1), Helper.DupLinkedList(c.L2));
 
                 Assert.True(
                     Helper.Equals(result, c.Output),
-                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
-                    );
+                    string.Format("Case{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
+                    ); 
             }
-
         }
+
     }
 }
