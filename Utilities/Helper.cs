@@ -46,6 +46,11 @@ namespace Utilities
             return res;
         }
 
+        public static int[] DupIntArray(int[] array)
+        {
+            return new List<int>(array).ToArray();
+        }
+
         public static bool Equals(ListNode l1, ListNode l2)
         {
             if (l1 == null && l2 == null)
