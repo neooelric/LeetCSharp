@@ -51,24 +51,25 @@ namespace Tests._0004
             return cases;
         }
 
-        public class Test
+    }
+
+    public class Test
+    {
+        [Fact]
+        public void RunTestCases()
         {
-            [Fact]
-            public void RunTestCases()
+            Solutions._0004.Solution solution = new Solutions._0004.Solution();
+
+            List<TestCase> cases = TestCase.ParseTestCasesFromTextFile(@"./0004.txt");
+
+            foreach (TestCase c in cases)
             {
-                Solutions._0004.Solution solution = new Solutions._0004.Solution();
+                double result = solution.FindMedianSortedArrays(c.Nums1, c.Nums2);
 
-                List<TestCase> cases = TestCase.ParseTestCasesFromTextFile(@"./0004.txt");
-
-                foreach(TestCase c in cases)
-                {
-                    double result = solution.FindMedianSortedArrays(c.Nums1, c.Nums2);
-
-                    Assert.True(
-                        Helper.Equals(result, c.Median),
-                        string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
-                        );
-                }
+                Assert.True(
+                    Helper.Equals(result, c.Median),
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
+                    );
             }
         }
     }
