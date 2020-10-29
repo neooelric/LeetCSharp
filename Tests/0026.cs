@@ -64,12 +64,12 @@ namespace Tests._0026
 
             foreach (TestCase c in cases)
             {
-                var originalNums = Helper.DupIntArray(c.Nums);
-                var result = solution.RemoveDuplicates(c.Nums);
+                var dupNums = Helper.DupIntArray(c.Nums);
+                var result = solution.RemoveDuplicates(dupNums);
 
                 Assert.True(
                     Helper.Equals(result, c.Output) 
-                    && Helper.Equals(c.Nums.Skip(0).Take(result).ToArray(), c.ModifiedNums),
+                    && Helper.Equals(dupNums.Skip(0).Take(result).ToArray(), c.ModifiedNums),
                     string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }
