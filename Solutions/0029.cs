@@ -13,13 +13,14 @@ namespace Solutions._0029
 
     the basic train of thought is :
         step 1 : check the answer should be positive or negative, 
-                 then convert two operand both to it's Abs value, maybe store it into a Unsigned type variable
+                 then convert two operand both to it's Abs value, maybe store them into Unsigned type variable
         step 2 : using minus in a loop, before dividend goes less than divisor, the minus count is the answer
 
     so there are two key points:
         1. range of int(Int32) is : [-0x80000000, 0x7fffffff]
-        2. minus in loop is pretty low performance, we have to find a way to optimize this, speed the loop
+        2. minus in loop is pretty low performance, we have to find a way to optimize this, speed the loop up
            the most intuitive way is to using bit operation to speed up the loop
+           minus 2^n * divisor in each iteration instead of divisor
     */
 
     public class Solution
