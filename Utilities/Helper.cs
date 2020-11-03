@@ -310,6 +310,45 @@ namespace Utilities
             return bool.Parse(line);
         }
 
+        public static char[] ParseCharArray(string line)
+        {
+            string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
+            List<char> res = new List<char>();
+            foreach(string elementStr in elementStrs)
+            {
+                if(string.IsNullOrEmpty(elementStr) || elementStr.Length < 2)
+                {
+                    continue;
+                }
+                res.Add(elementStr[1]);
+            }
+
+            return res.ToArray();
+        }
+
+        public static char[][] ParseChar2DArray(string line)
+        {   
+            string[] elementStrs = line.Substring(1, line.Length - 2).Split("],");
+            List<char[]> res = new List<char[]>();
+            foreach (string elementStr in elementStrs)
+            {
+                if (string.IsNullOrEmpty(elementStr))
+                {
+                    continue;
+                }
+                if (elementStr.EndsWith("]"))
+                {
+                    res.Add(ParseCharArray(elementStr));
+                }
+                else
+                {
+                    res.Add(ParseCharArray(elementStr + "]"));
+                }
+            }
+
+            return res.ToArray();
+        }
+
         public static string[] ParseStringArray(string line)
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
@@ -409,6 +448,48 @@ namespace Utilities
         }
 
         public static string FormatStringArray(string[] array)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
+
+            for (int i = 0; i < array.Length; ++i)
+            {
+                if (i != 0)
+                {
+                    sb.Append(",");
+                }
+
+                sb.AppendFormat("\"{0}\"", array[i]);
+            }
+
+            sb.Append("]");
+
+            return sb.ToString();
+        }
+
+        public static string FormatChar2DArray(char[][] array)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("[");
+
+            for (int i = 0; i < array.Length; ++i)
+            {
+                if (i != 0)
+                {
+                    sb.AppendLine();
+                    sb.Append(",");
+                }
+
+                sb.Append(FormatCharArray(array[i]));
+            }
+
+            sb.Append("]");
+
+            return sb.ToString();
+        }
+
+        public static string FormatCharArray(char[] array)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("[");
