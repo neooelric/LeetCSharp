@@ -8,6 +8,18 @@ namespace Utilities
 {
     public class Helper
     {
+
+        public static char[][] DupChar2DArray(char[][] array)
+        {
+            return array.Select(a => DupCharArray(a)).ToArray();
+
+        }
+
+        public static char[] DupCharArray(char[] array)
+        {
+            return new List<char>(array).ToArray();
+        }
+
         public static ListNode DupLinkedList(ListNode l)
         {
             if (l == null)
