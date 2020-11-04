@@ -63,7 +63,7 @@ namespace Tests._0024
 
                 Assert.True(
                     Helper.Equals(result, c.Output),
-                    string.Format("Case{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
                     );
             }
         }

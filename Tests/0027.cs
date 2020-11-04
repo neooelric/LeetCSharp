@@ -75,7 +75,7 @@ namespace Tests._0027
                 Assert.True(
                     Helper.Equals(result, c.Output)
                     && Helper.IntArrayEqualsRegardlessOfOrder(dupNums.Skip(0).Take(result).ToArray(), c.ModifiedNums),
-                    string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }
         }

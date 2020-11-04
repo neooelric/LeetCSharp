@@ -65,7 +65,7 @@ namespace Tests._0018
 
                 Assert.True(
                     Helper.Int2DArrayEqualsRegardlessOfOrder(result.Select(x => x.ToArray()).ToArray(), c.Output),
-                    string.Format("Case{{{0}}}, Result:{{{1}}}", c, Helper.FormatInt2DArray(result.Select(x => x.ToArray()).ToArray()))
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatInt2DArray(result.Select(x => x.ToArray()).ToArray()))
                     );
             }
         }

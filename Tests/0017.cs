@@ -61,7 +61,7 @@ namespace Tests._0017
 
                 Assert.True(
                     Helper.StringArrayEqualsRegardlessOfOrder(result.ToArray(), c.Output),
-                    string.Format("Case{{{0}}}, Result:{{{1}}}", c, Helper.FormatStringArray(result.ToArray()))
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatStringArray(result.ToArray()))
                     );
             }
         }

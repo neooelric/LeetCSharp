@@ -70,7 +70,7 @@ namespace Tests._0026
                 Assert.True(
                     Helper.Equals(result, c.Output) 
                     && Helper.Equals(dupNums.Skip(0).Take(result).ToArray(), c.ModifiedNums),
-                    string.Format("Case{{{0}}}, Result:{{{1}}}", c, result)
+                    string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }
         }
