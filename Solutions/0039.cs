@@ -12,20 +12,18 @@ namespace Solutions._0039
     actually we've already used DFS in problem 37(solve soduko problem), but we just call it "recursive"
 
     the train of thought is:
-        1. sort the candidates
-        2. use recursive to get a result combination
-            for problem { candidates[0..length] , target }, 
-                first, we try to add candidate[0] to combination set,
-                then the problem become { candidates[0..length] , target - candidate[0]}
-                    if the sub problem has no answer, then pop out candidate[0] from combination set
-                    else, we must got a full combination set at the deepest recursive calling stack
+        for problem { candidates[0..length] , target }, 
+            first, we try to add candidate[0] to combination set,
+            then the problem become { candidates[0..length] , target - candidate[0]}
+                if the sub problem has no answer, then pop out candidate[0] from combination set
+                else, we must got a full combination set at the deepest recursive calling stack
 
-                then, we can try to add candidate[1] to combination set
-                then the problem become { candidates[1..length] , target - candidate[1]) }
+            then, we can try to add candidate[1] to combination set
+            then the problem become { candidates[1..length] , target - candidate[1]) }
 
-                ...
-                at last, we can try to add candidate[length-1] to combination set
-                then the problem become { candidates[length-1] , target - candidate[length-1] }
+            ...
+            at last, we can try to add candidate[length-1] to combination set
+            then the problem become { candidates[length-1] , target - candidate[length-1] }
 
 
     so, the difference between DFS+recall and simple recursive is :
