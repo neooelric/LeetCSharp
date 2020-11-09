@@ -154,6 +154,86 @@ namespace Utilities
             return true;
         }
 
+        public static bool Int2DArrayEqualsRegardlessOfOuterOrder(IList<IList<int>> IListArrA, int[][] arrB)
+        {
+            if (IListArrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (IListArrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            List<int[]> IListIntArrA = new List<int[]>();
+            foreach (IList<int> subArr in IListArrA)
+            {
+                IListIntArrA.Add(subArr.ToArray());
+            }
+
+            return Int2DArrayEqualsRegardlessOfOuterOrder(IListIntArrA.ToArray(), arrB);
+        }
+
+        public static bool Int2DArrayEqualsRegardlessOfOuterOrder(int[][] arrA, int[][] arrB)
+        {
+            if (arrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (arrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            if (arrA.Length != arrB.Length)
+            {
+                return false;
+            }
+
+            List<int[]> listA = new List<int[]>(arrA);
+            List<int[]> listB = new List<int[]>(arrB);
+
+            IComparer<int[]> comparer = Comparer<int[]>.Create((int[] left, int[] right) =>
+            {
+                if (left == null && right == null)
+                {
+                    return 0;
+                }
+                if (left == null || right == null)
+                {
+                    return left == null ? -1 : 1;
+                }
+                if (left.Length != right.Length)
+                {
+                    return left.Length - right.Length;
+                }
+                for (int i = 0; i < left.Length; ++i)
+                {
+                    int res = left[i] - right[i];
+                    if (res != 0)
+                    {
+                        return res;
+                    }
+                }
+
+                return 0;
+            });
+
+            listA.Sort(comparer);
+            listB.Sort(comparer);
+
+            for (int i = 0; i < listA.Count; ++i)
+            {
+                if (!Equals(listA[i], listB[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+
         public static bool Int2DArrayEqualsRegardlessOfOrder(IList<IList<int>> IListArrA, int[][] arrB)
         {
             if (IListArrA == null && arrB == null)
@@ -326,9 +406,9 @@ namespace Utilities
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");
             List<char> res = new List<char>();
-            foreach(string elementStr in elementStrs)
+            foreach (string elementStr in elementStrs)
             {
-                if(string.IsNullOrEmpty(elementStr) || elementStr.Length < 2)
+                if (string.IsNullOrEmpty(elementStr) || elementStr.Length < 2)
                 {
                     continue;
                 }
@@ -339,7 +419,7 @@ namespace Utilities
         }
 
         public static char[][] ParseChar2DArray(string line)
-        {   
+        {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split("],");
             List<char[]> res = new List<char[]>();
             foreach (string elementStr in elementStrs)
