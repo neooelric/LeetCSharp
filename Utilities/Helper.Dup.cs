@@ -63,6 +63,11 @@ namespace Utilities
             return new List<int>(array).ToArray();
         }
 
+        public static int[][] DupInt2DArray(int[][] array)
+        {
+            return array.Select(arr => arr.ToArray()).ToArray();
+        }
+
 
     }
 }

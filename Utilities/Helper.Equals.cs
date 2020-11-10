@@ -307,6 +307,33 @@ namespace Utilities
             return true;
         }
 
+        public static bool Equals(int[][] arrA, int[][] arrB)
+        {
+            if (arrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (arrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            if (arrA.Length != arrB.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < arrA.Length; ++i)
+            {
+                if (!Equals(arrA[i], arrB[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         public static bool Equals(double a, double b)
         {
             return Math.Abs(a - b) < 0.00000001;
