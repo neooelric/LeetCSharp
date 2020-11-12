@@ -8,14 +8,18 @@ namespace Utilities
 {
     public static partial class Helper
     {
-        public static T[][] Dup2DArray<T>(T[][] twoDArray) where T : struct
+        public static T[][] Dup2DArray<T>(T[][] twoDArray)
         {
-            return twoDArray.Select(arr => arr.ToArray()).ToArray();
+            if (twoDArray == null)
+            {
+                return null;
+            }
+            return twoDArray.Select(arr => arr == null ? null : arr.ToArray()).ToArray();
         }
 
-        public static T[] DupArray<T>(T[] array) where T : struct
+        public static T[] DupArray<T>(T[] array)
         {
-            return array.ToArray();
+            return array == null ? null : array.ToArray();
         }
 
         public static ListNode DupLinkedList(ListNode l)
