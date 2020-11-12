@@ -67,6 +67,30 @@ namespace Utilities
             return res.ToArray();
         }
 
+        public static string[][] ParseString2DArray(string line)
+        {
+            string[] elementStrs = line.Substring(1, line.Length - 2).Split("],");
+            List<string[]> res = new List<string[]>();
+            foreach (string elementStr in elementStrs)
+            {
+                if (string.IsNullOrEmpty(elementStr))
+                {
+                    continue;
+                }
+                if (elementStr.EndsWith("]"))
+                {
+                    res.Add(ParseStringArray(elementStr));
+                }
+                else
+                {
+                    res.Add(ParseStringArray(elementStr + "]"));
+                }
+            }
+
+            return res.ToArray();
+        }
+
+
         public static string[] ParseStringArray(string line)
         {
             string[] elementStrs = line.Substring(1, line.Length - 2).Split(",");

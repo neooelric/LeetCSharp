@@ -199,6 +199,81 @@ namespace Utilities
             return Int2DArrayEqualsRegardlessOfOrder(IListIntArrA.ToArray(), arrB);
         }
 
+        public static bool String2DArrayEqualsRegardlessOfOrder(IList<IList<string>> IListArrA, string[][] arrB)
+        {
+            if (IListArrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (IListArrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            return String2DArrayEqualsRegardlessOfOrder(IListArrA.Select(a => a.ToArray()).ToArray(), arrB);
+
+        }
+
+        public static bool String2DArrayEqualsRegardlessOfOrder(string[][] arrA, string[][] arrB)
+        {
+            if (arrA == null && arrB == null)
+            {
+                return true;
+            }
+            if (arrA == null || arrB == null)
+            {
+                return false;
+            }
+
+            if (arrA.Length != arrB.Length)
+            {
+                return false;
+            }
+
+            List<string[]> listA = new List<string[]>(arrA);
+            List<string[]> listB = new List<string[]>(arrB);
+
+            IComparer<string[]> comparer = Comparer<string[]>.Create((string[] left, string[] right) =>
+            {
+                if (left == null && right == null)
+                {
+                    return 0;
+                }
+                if (left == null || right == null)
+                {
+                    return left == null ? -1 : 1;
+                }
+                if (left.Length != right.Length)
+                {
+                    return left.Length - right.Length;
+                }
+                for (int i = 0; i < left.Length; ++i)
+                {
+                    int res = string.Compare(left[i], right[i]);
+                    if (res != 0)
+                    {
+                        return res;
+                    }
+                }
+
+                return 0;
+            });
+
+            listA.Sort(comparer);
+            listB.Sort(comparer);
+
+            for (int i = 0; i < listA.Count; ++i)
+            {
+                if (!StringArrayEqualsRegardlessOfOrder(listA[i], listB[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+
+        }
+
         public static bool Int2DArrayEqualsRegardlessOfOrder(int[][] arrA, int[][] arrB)
         {
             if (arrA == null && arrB == null)

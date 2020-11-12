@@ -68,6 +68,32 @@ namespace Utilities
             return sb.ToString();
         }
 
+        public static string FormatString2DArray(IList<IList<string>> array)
+        {
+            return FormatString2DArray(array.Select(arr => arr.ToArray()).ToArray());
+        }
+
+        public static string FormatString2DArray(string[][] array)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("[");
+
+            for (int i = 0; i < array.Length; ++i)
+            {
+                if (i != 0)
+                {
+                    sb.Append(",");
+                }
+
+                sb.Append(FormatStringArray(array[i]));
+            }
+
+            sb.Append("]");
+
+            return sb.ToString();
+        }
+
         public static string FormatChar2DArray(char[][] array)
         {
             StringBuilder sb = new StringBuilder();
