@@ -61,7 +61,7 @@ namespace Tests._0031
                 solution.NextPermutation(result);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ArrayEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatIntArray(result))
                     );
             }

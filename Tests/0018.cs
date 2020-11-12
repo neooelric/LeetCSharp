@@ -64,7 +64,7 @@ namespace Tests._0018
                 var result = solution.FourSum(c.Nums, c.Target);
 
                 Assert.True(
-                    Helper.Int2DArrayEqualsRegardlessOfOrder(result.Select(x => x.ToArray()).ToArray(), c.Output),
+                    Helper.TwoDArrayEqualsRegardlessOfOrder(result.Select(x => x.ToArray()).ToArray(), c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatInt2DArray(result.Select(x => x.ToArray()).ToArray()))
                     );
             }

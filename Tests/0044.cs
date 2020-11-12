@@ -64,7 +64,7 @@ namespace Tests._0044
                 var result = solution.IsMatch(c.S, c.P);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

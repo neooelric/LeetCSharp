@@ -15,7 +15,7 @@ namespace Tests._0024
 
         public override string ToString()
         {
-            return string.Format("Head:{0}, Output{1}", 
+            return string.Format("Head:{0}, Output{1}",
             Helper.FormatLinkedList(Head),
             Helper.FormatLinkedList(Output));
         }
@@ -26,11 +26,11 @@ namespace Tests._0024
 
             List<TestCase> cases = new List<TestCase>();
 
-            for(int i = 0; i < fileContent.Length; ++i)
+            for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
 
-                switch(i % 3)
+                switch (i % 3)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -62,11 +62,11 @@ namespace Tests._0024
                 var result = solution.SwapPairs(Helper.DupLinkedList(c.Head));
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ListEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
                     );
             }
         }
-        
+
     }
 }

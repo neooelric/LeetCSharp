@@ -22,11 +22,11 @@ namespace Tests._0003
 
             List<TestCase> cases = new List<TestCase>();
 
-            for(int i = 0; i < fileContent.Length; ++i)
+            for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
 
-                switch(i % 3)
+                switch (i % 3)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -52,12 +52,12 @@ namespace Tests._0003
             Solutions._0003.Solution solution = new Solutions._0003.Solution();
             List<TestCase> cases = TestCase.ParseTestCasesFromTextFile(@"./0003.txt");
 
-            foreach(TestCase c in cases)
+            foreach (TestCase c in cases)
             {
                 int result = solution.LengthOfLongestSubstring(c.S);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

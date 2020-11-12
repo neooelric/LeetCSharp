@@ -24,11 +24,11 @@ namespace Tests._0023
 
             List<TestCase> cases = new List<TestCase>();
 
-            for(int i = 0; i < fileContent.Length; ++i)
+            for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
 
-                switch(i % 3)
+                switch (i % 3)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -60,11 +60,11 @@ namespace Tests._0023
                 var result = solution.MergeKLists(Helper.DupLinkedListArray(c.Lists));
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ListEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
                     );
             }
         }
-        
+
     }
 }

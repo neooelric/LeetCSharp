@@ -65,7 +65,7 @@ namespace Tests._0019
                 var result = solution.RemoveNthFromEnd(Helper.DupLinkedList(c.Head), c.N);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ListEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
                     );
             }

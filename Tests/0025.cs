@@ -16,7 +16,7 @@ namespace Tests._0025
 
         public override string ToString()
         {
-            return string.Format("Head:{0}, K:{1}, Output{2}", 
+            return string.Format("Head:{0}, K:{1}, Output{2}",
                 Helper.FormatLinkedList(Head),
                 K,
                 Helper.FormatLinkedList(Output));
@@ -28,11 +28,11 @@ namespace Tests._0025
 
             List<TestCase> cases = new List<TestCase>();
 
-            for(int i = 0; i < fileContent.Length; ++i)
+            for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
 
-                switch(i % 4)
+                switch (i % 4)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -67,11 +67,11 @@ namespace Tests._0025
                 var result = solution.ReverseKGroup(Helper.DupLinkedList(c.Head), c.K);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ListEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
                     );
             }
         }
-        
+
     }
 }

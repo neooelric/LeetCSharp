@@ -64,7 +64,7 @@ namespace Tests._0040
                 var result = solution.CombinationSum2(Helper.DupArray(c.Candidates), c.Target);
 
                 Assert.True(
-                    Helper.Int2DArrayEqualsRegardlessOfOrder(result, c.Output),
+                    Helper.TwoDArrayEqualsRegardlessOfOrder(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatInt2DArray(result))
                     );
             }

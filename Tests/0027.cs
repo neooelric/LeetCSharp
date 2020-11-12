@@ -73,8 +73,8 @@ namespace Tests._0027
                 var result = solution.RemoveElement(dupNums, c.Val);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output)
-                    && Helper.IntArrayEqualsRegardlessOfOrder(dupNums.Skip(0).Take(result).ToArray(), c.ModifiedNums),
+                    Helper.ValueEquals(result, c.Output)
+                    && Helper.ArrayEqualsRegardlessOfOrder(dupNums.Skip(0).Take(result).ToArray(), c.ModifiedNums),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

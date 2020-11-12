@@ -60,7 +60,7 @@ namespace Tests._0020
                 var result = solution.IsValid(c.S);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

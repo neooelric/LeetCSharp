@@ -16,7 +16,7 @@ namespace Tests._0033
 
         public override string ToString()
         {
-            return string.Format("Nums:{0}, Target:{1}, Output:{2}",Helper.FormatIntArray(Nums), Target, Output);
+            return string.Format("Nums:{0}, Target:{1}, Output:{2}", Helper.FormatIntArray(Nums), Target, Output);
         }
 
         public static List<TestCase> ParseTestCaseFromTextFile(string filePath)
@@ -25,11 +25,11 @@ namespace Tests._0033
 
             List<TestCase> cases = new List<TestCase>();
 
-            for(int i = 0; i < fileContent.Length; ++i)
+            for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
 
-                switch(i % 4)
+                switch (i % 4)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -64,11 +64,11 @@ namespace Tests._0033
                 var result = solution.Search(c.Nums, c.Target);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }
         }
-        
+
     }
 }

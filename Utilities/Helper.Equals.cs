@@ -8,7 +8,24 @@ namespace Utilities
 {
     public static partial class Helper
     {
-        public static bool Equals(ListNode l1, ListNode l2)
+        public static bool ValueEquals<T>(T left, T right)
+        {
+            if (Nullable.GetUnderlyingType(typeof(T)) != null)
+            {
+                if (left == null && right == null)
+                {
+                    return true;
+                }
+                if (left == null || right == null)
+                {
+                    return false;
+                }
+            }
+
+            return Comparer<T>.Default.Compare(left, right) == 0;
+        }
+
+        public static bool ListEquals(ListNode l1, ListNode l2)
         {
             if (l1 == null && l2 == null)
             {
@@ -41,56 +58,26 @@ namespace Utilities
             }
         }
 
-        public static bool IntArrayEqualsRegardlessOfOrder(int[] arrA, int[] arrB)
+        public static bool ArrayEquals<T>(T[] left, T[] right)
         {
-            if (arrA == null && arrB == null)
+            if (left == null && right == null)
             {
                 return true;
             }
-            if (arrA == null || arrB == null)
+
+            if (left == null || right == null)
             {
                 return false;
             }
 
-            if (arrA.Length != arrB.Length)
+            if (left.Length != right.Length)
             {
                 return false;
             }
 
-            List<int> listA = new List<int>(arrA);
-            List<int> listB = new List<int>(arrB);
-
-            listA.Sort();
-            listB.Sort();
-
-            return Enumerable.SequenceEqual(listA, listB);
-        }
-
-        public static bool StringArrayEqualsRegardlessOfOrder(string[] arrA, string[] arrB)
-        {
-            if (arrA == null && arrB == null)
+            for (int i = 0; i < left.Length; ++i)
             {
-                return true;
-            }
-            if (arrA == null || arrB == null)
-            {
-                return false;
-            }
-
-            if (arrA.Length != arrB.Length)
-            {
-                return false;
-            }
-
-            List<string> listA = new List<string>(arrA);
-            List<string> listB = new List<string>(arrB);
-
-            listA.Sort();
-            listB.Sort();
-
-            for (int i = 0; i < listA.Count; ++i)
-            {
-                if (!Equals(listA[i], listB[i]))
+                if (!ValueEquals<T>(left[i], right[i]))
                 {
                     return false;
                 }
@@ -99,46 +86,137 @@ namespace Utilities
             return true;
         }
 
-        public static bool Int2DArrayEqualsRegardlessOfOuterOrder(IList<IList<int>> IListArrA, int[][] arrB)
+        public static bool ArrayEqualsRegardlessOfOrder<T>(T[] left, T[] right)
         {
-            if (IListArrA == null && arrB == null)
+            if (left == null && right == null)
             {
                 return true;
             }
-            if (IListArrA == null || arrB == null)
+
+            if (left == null || right == null)
             {
                 return false;
             }
 
-            List<int[]> IListIntArrA = new List<int[]>();
-            foreach (IList<int> subArr in IListArrA)
+            if (left.Length != right.Length)
             {
-                IListIntArrA.Add(subArr.ToArray());
+                return false;
             }
 
-            return Int2DArrayEqualsRegardlessOfOuterOrder(IListIntArrA.ToArray(), arrB);
+            T[] dupLeft = DupArray(left);
+            T[] dupRight = DupArray(right);
+
+            Array.Sort(dupLeft);
+            Array.Sort(dupRight);
+
+            return ArrayEquals(dupLeft, dupRight);
         }
 
-        public static bool Int2DArrayEqualsRegardlessOfOuterOrder(int[][] arrA, int[][] arrB)
+        public static bool TwoDArrayEquals<T>(T[][] left, T[][] right)
         {
-            if (arrA == null && arrB == null)
+            if (left == null && right == null)
             {
                 return true;
             }
-            if (arrA == null || arrB == null)
+            if (left == null || right == null)
+            {
+                return false;
+            }
+            if (left.Length != right.Length)
+            {
+                return false;
+            }
+            for (int i = 0; i < left.Length; ++i)
+            {
+                if (!ArrayEquals<T>(left[i], right[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public static bool TwoDArrayEqualsRegardlessOfOuterOrder<T>(T[][] left, T[][] right)
+        {
+            return TwoDArrayEqualsRegardlessOfOrder(left, right, true);
+        }
+
+        public static bool TwoDArrayEqualsRegardlessOfOuterOrder<T>(IList<IList<T>> leftList, T[][] right)
+        {
+            if (leftList == null && right == null)
+            {
+                return true;
+            }
+            if (leftList == null || right == null)
+            {
+                return false;
+            }
+            if (leftList.Count != right.Length)
             {
                 return false;
             }
 
-            if (arrA.Length != arrB.Length)
+            T[][] left = new T[leftList.Count][];
+
+            for (int i = 0; i < leftList.Count; ++i)
+            {
+                left[i] = leftList[i] == null ? null : leftList[i].ToArray();
+            }
+
+            return TwoDArrayEqualsRegardlessOfOuterOrder(left, right);
+        }
+
+        public static bool TwoDArrayEqualsRegardlessOfOrder<T>(T[][] left, T[][] right)
+        {
+            return TwoDArrayEqualsRegardlessOfOrder(left, right, false);
+        }
+
+        public static bool TwoDArrayEqualsRegardlessOfOrder<T>(IList<IList<T>> leftList, T[][] right)
+        {
+            if (leftList == null && right == null)
+            {
+                return true;
+            }
+            if (leftList == null || right == null)
+            {
+                return false;
+            }
+            if (leftList.Count != right.Length)
             {
                 return false;
             }
 
-            List<int[]> listA = new List<int[]>(arrA);
-            List<int[]> listB = new List<int[]>(arrB);
+            T[][] left = new T[leftList.Count][];
 
-            IComparer<int[]> comparer = Comparer<int[]>.Create((int[] left, int[] right) =>
+            for (int i = 0; i < leftList.Count; ++i)
+            {
+                left[i] = leftList[i] == null ? null : leftList[i].ToArray();
+            }
+
+            return TwoDArrayEqualsRegardlessOfOrder(left, right);
+        }
+
+        private static bool TwoDArrayEqualsRegardlessOfOrder<T>(T[][] left, T[][] right, bool onlyOuterOrder)
+        {
+            if (left == null && right == null)
+            {
+                return true;
+            }
+
+            if (left == null || right == null)
+            {
+                return false;
+            }
+
+            if (left.Length != right.Length)
+            {
+                return false;
+            }
+
+            T[][] dupLeft = Dup2DArray(left);
+            T[][] dupRight = Dup2DArray(right);
+
+            IComparer<T[]> comparer = Comparer<T[]>.Create((T[] left, T[] right) =>
             {
                 if (left == null && right == null)
                 {
@@ -154,7 +232,7 @@ namespace Utilities
                 }
                 for (int i = 0; i < left.Length; ++i)
                 {
-                    int res = left[i] - right[i];
+                    int res = Comparer<T>.Default.Compare(left[i], right[i]);
                     if (res != 0)
                     {
                         return res;
@@ -164,269 +242,53 @@ namespace Utilities
                 return 0;
             });
 
-            listA.Sort(comparer);
-            listB.Sort(comparer);
+            Array.Sort(dupLeft, comparer);
+            Array.Sort(dupRight, comparer);
 
-            for (int i = 0; i < listA.Count; ++i)
+            for (int i = 0; i < dupLeft.Length; ++i)
             {
-                if (!Equals(listA[i], listB[i]))
+                if (onlyOuterOrder)
                 {
-                    return false;
-                }
-            }
-
-            return true;
-
-        }
-
-        public static bool Int2DArrayEqualsRegardlessOfOrder(IList<IList<int>> IListArrA, int[][] arrB)
-        {
-            if (IListArrA == null && arrB == null)
-            {
-                return true;
-            }
-            if (IListArrA == null || arrB == null)
-            {
-                return false;
-            }
-
-            List<int[]> IListIntArrA = new List<int[]>();
-            foreach (IList<int> subArr in IListArrA)
-            {
-                IListIntArrA.Add(subArr.ToArray());
-            }
-
-            return Int2DArrayEqualsRegardlessOfOrder(IListIntArrA.ToArray(), arrB);
-        }
-
-        public static bool String2DArrayEqualsRegardlessOfOrder(IList<IList<string>> IListArrA, string[][] arrB)
-        {
-            if (IListArrA == null && arrB == null)
-            {
-                return true;
-            }
-            if (IListArrA == null || arrB == null)
-            {
-                return false;
-            }
-
-            return String2DArrayEqualsRegardlessOfOrder(IListArrA.Select(a => a.ToArray()).ToArray(), arrB);
-
-        }
-
-        public static bool String2DArrayEqualsRegardlessOfOrder(string[][] arrA, string[][] arrB)
-        {
-            if (arrA == null && arrB == null)
-            {
-                return true;
-            }
-            if (arrA == null || arrB == null)
-            {
-                return false;
-            }
-
-            if (arrA.Length != arrB.Length)
-            {
-                return false;
-            }
-
-            List<string[]> listA = new List<string[]>(arrA);
-            List<string[]> listB = new List<string[]>(arrB);
-
-            IComparer<string[]> comparer = Comparer<string[]>.Create((string[] left, string[] right) =>
-            {
-                if (left == null && right == null)
-                {
-                    return 0;
-                }
-                if (left == null || right == null)
-                {
-                    return left == null ? -1 : 1;
-                }
-                if (left.Length != right.Length)
-                {
-                    return left.Length - right.Length;
-                }
-                for (int i = 0; i < left.Length; ++i)
-                {
-                    int res = string.Compare(left[i], right[i]);
-                    if (res != 0)
+                    if (!ArrayEquals(dupLeft[i], dupRight[i]))
                     {
-                        return res;
+                        return false;
                     }
                 }
-
-                return 0;
-            });
-
-            listA.Sort(comparer);
-            listB.Sort(comparer);
-
-            for (int i = 0; i < listA.Count; ++i)
-            {
-                if (!StringArrayEqualsRegardlessOfOrder(listA[i], listB[i]))
+                else
                 {
-                    return false;
-                }
-            }
-
-            return true;
-
-        }
-
-        public static bool Int2DArrayEqualsRegardlessOfOrder(int[][] arrA, int[][] arrB)
-        {
-            if (arrA == null && arrB == null)
-            {
-                return true;
-            }
-            if (arrA == null || arrB == null)
-            {
-                return false;
-            }
-
-            if (arrA.Length != arrB.Length)
-            {
-                return false;
-            }
-
-            List<int[]> listA = new List<int[]>(arrA);
-            List<int[]> listB = new List<int[]>(arrB);
-
-            IComparer<int[]> comparer = Comparer<int[]>.Create((int[] left, int[] right) =>
-            {
-                if (left == null && right == null)
-                {
-                    return 0;
-                }
-                if (left == null || right == null)
-                {
-                    return left == null ? -1 : 1;
-                }
-                if (left.Length != right.Length)
-                {
-                    return left.Length - right.Length;
-                }
-                for (int i = 0; i < left.Length; ++i)
-                {
-                    int res = left[i] - right[i];
-                    if (res != 0)
+                    if (!ArrayEqualsRegardlessOfOrder(dupLeft[i], dupRight[i]))
                     {
-                        return res;
+                        return false;
                     }
                 }
-
-                return 0;
-            });
-
-            listA.Sort(comparer);
-            listB.Sort(comparer);
-
-            for (int i = 0; i < listA.Count; ++i)
-            {
-                if (!IntArrayEqualsRegardlessOfOrder(listA[i], listB[i]))
-                {
-                    return false;
-                }
             }
 
             return true;
         }
 
-        public static bool Equals(int[] arrA, int[] arrB)
+        private static bool TwoDArrayEqualsRegardlessOfOrder<T>(IList<IList<T>> leftList, T[][] right, bool onlyOuterOrder)
         {
-            if (arrA == null && arrB == null)
+            if (leftList == null && right == null)
             {
                 return true;
             }
-            if (arrA == null || arrB == null)
+            if (leftList == null || right == null)
+            {
+                return false;
+            }
+            if (leftList.Count != right.Length)
             {
                 return false;
             }
 
-            if (arrA.Length != arrB.Length)
+            T[][] left = new T[leftList.Count][];
+
+            for (int i = 0; i < leftList.Count; ++i)
             {
-                return false;
+                left[i] = leftList[i] == null ? null : leftList[i].ToArray();
             }
 
-            List<int> listA = new List<int>(arrA);
-            List<int> listB = new List<int>(arrB);
-
-            return Enumerable.SequenceEqual(listA, listB);
-        }
-
-        public static bool Equals(string[] arrA, int[] arrB)
-        {
-            if (arrA == null && arrB == null)
-            {
-                return true;
-            }
-            if (arrA == null || arrB == null)
-            {
-                return false;
-            }
-
-            if (arrA.Length != arrB.Length)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < arrA.Length; ++i)
-            {
-                if (!Equals(arrA[i], arrB[i]))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public static bool Equals(int[][] arrA, int[][] arrB)
-        {
-            if (arrA == null && arrB == null)
-            {
-                return true;
-            }
-            if (arrA == null || arrB == null)
-            {
-                return false;
-            }
-
-            if (arrA.Length != arrB.Length)
-            {
-                return false;
-            }
-
-            for (int i = 0; i < arrA.Length; ++i)
-            {
-                if (!Equals(arrA[i], arrB[i]))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        public static bool Equals(double a, double b)
-        {
-            return Math.Abs(a - b) < 0.00000001;
-        }
-
-        public static bool Equals(string a, string b)
-        {
-            return string.Compare(a, b) == 0;
-        }
-
-        public static bool Equals(int a, int b)
-        {
-            return a == b;
-        }
-
-        public static bool Equals(bool a, bool b)
-        {
-            return a == b;
+            return TwoDArrayEqualsRegardlessOfOrder(left, right, onlyOuterOrder);
         }
     }
 }

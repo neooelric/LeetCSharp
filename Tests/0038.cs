@@ -60,7 +60,7 @@ namespace Tests._0038
                 var result = solution.CountAndSay(c.N);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

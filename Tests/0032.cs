@@ -60,7 +60,7 @@ namespace Tests._0032
                 var result = solution.LongestValidParentheses(c.S);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

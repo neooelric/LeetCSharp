@@ -60,7 +60,7 @@ namespace Tests._0022
                 var result = solution.GenerateParenthesis(c.N);
 
                 Assert.True(
-                    Helper.StringArrayEqualsRegardlessOfOrder(result.ToArray(), c.Output),
+                    Helper.ArrayEqualsRegardlessOfOrder(result.ToArray(), c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatStringArray(result.ToArray()))
                     );
             }

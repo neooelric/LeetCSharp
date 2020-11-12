@@ -29,11 +29,11 @@ namespace Tests._0034
 
             List<TestCase> cases = new List<TestCase>();
 
-            for(int i = 0; i < fileContent.Length; ++i)
+            for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
 
-                switch(i % 4)
+                switch (i % 4)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -68,11 +68,11 @@ namespace Tests._0034
                 var result = solution.SearchRange(c.Nums, c.Target);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ArrayEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatIntArray(result))
                     );
             }
         }
-        
+
     }
 }

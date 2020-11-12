@@ -64,7 +64,7 @@ namespace Tests._0043
                 var result = solution.Multiply(c.Num1, c.Num2);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{\"{1}\"}}", c, result)
                     );
             }

@@ -65,9 +65,9 @@ namespace Tests._0021
                 var result = solution.MergeTwoLists(Helper.DupLinkedList(c.L1), Helper.DupLinkedList(c.L2));
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ListEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
-                    ); 
+                    );
             }
         }
 

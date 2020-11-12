@@ -67,7 +67,7 @@ namespace Tests._0037
                 solution.SolveSudoku(result);
 
                 Assert.True(
-                    Helper.Equals(Helper.FormatChar2DArray(result), Helper.FormatChar2DArray(c.Output)),
+                    Helper.ValueEquals(Helper.FormatChar2DArray(result), Helper.FormatChar2DArray(c.Output)),
                     string.Format("Case:\r\n{{\r\n{0}\r\n}}\r\nResult:\r\n{{\r\n{1}\r\n}}", c, Helper.FormatChar2DArray(result))
                     );
             }

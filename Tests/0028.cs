@@ -65,7 +65,7 @@ namespace Tests._0028
                 var result = solution.StrStr(c.Haystack, c.Needle);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

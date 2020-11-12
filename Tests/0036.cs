@@ -29,12 +29,12 @@ namespace Tests._0036
             {
                 string line = fileContent[i];
 
-                if(line.StartsWith("-----"))
+                if (line.StartsWith("-----"))
                 {
                     continue;
                 }
 
-                if(line.StartsWith("[[") || line.StartsWith(",["))
+                if (line.StartsWith("[[") || line.StartsWith(",["))
                 {
                     matrixStr += line;
                     continue;
@@ -64,7 +64,7 @@ namespace Tests._0036
                 var result = solution.IsValidSudoku(c.Board);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

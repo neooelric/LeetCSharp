@@ -64,7 +64,7 @@ namespace Tests._0030
                 var result = solution.FindSubstring(c.S, c.Words);
 
                 Assert.True(
-                    Helper.Equals(result.ToArray(), c.Output),
+                    Helper.ArrayEquals(result.ToArray(), c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatIntArray(result.ToArray()))
                     );
             }

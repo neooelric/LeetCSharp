@@ -67,7 +67,7 @@ namespace Tests._0001
                 int[] result = solution.TwoSum(c.Nums, c.Target);
 
                 Assert.True(
-                    Helper.IntArrayEqualsRegardlessOfOrder(result, c.Output),
+                    Helper.ArrayEqualsRegardlessOfOrder(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatIntArray(result))
                     );
             }

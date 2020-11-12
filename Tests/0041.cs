@@ -60,7 +60,7 @@ namespace Tests._0041
                 var result = solution.FirstMissingPositive(Helper.DupArray(c.Nums));
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

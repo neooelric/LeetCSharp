@@ -27,11 +27,11 @@ namespace Tests._0004
 
             List<TestCase> cases = new List<TestCase>();
 
-            for(int i = 0; i < fileContent.Length; ++i)
+            for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
 
-                switch(i % 4)
+                switch (i % 4)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -67,7 +67,7 @@ namespace Tests._0004
                 double result = solution.FindMedianSortedArrays(c.Nums1, c.Nums2);
 
                 Assert.True(
-                    Helper.Equals(result, c.Median),
+                    Helper.ValueEquals(result, c.Median),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

@@ -61,12 +61,12 @@ namespace Tests._0002
             Solutions._0002.Solution solution = new Solutions._0002.Solution();
             List<TestCase> cases = TestCase.ParseTestCasesFromTextFile(@"./0002.txt");
 
-            foreach(TestCase c in cases)
+            foreach (TestCase c in cases)
             {
                 ListNode result = solution.AddTwoNumbers(Helper.DupLinkedList(c.L1), Helper.DupLinkedList(c.L2));
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ListEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatLinkedList(result))
                     );
             }

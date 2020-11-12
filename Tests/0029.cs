@@ -64,7 +64,7 @@ namespace Tests._0029
                 var result = solution.Divide(c.Dividend, c.Divisor);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

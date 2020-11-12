@@ -7,7 +7,7 @@ using Xunit;
 namespace Tests._0006
 {
     public class TestCase
-    { 
+    {
         public string S { get; set; }
         public int NumRows { get; set; }
         public string Output { get; set; }
@@ -18,7 +18,7 @@ namespace Tests._0006
         }
 
         public static List<TestCase> ParseTestCasesFromTextFile(string filePath)
-        { 
+        {
             string[] fileContent = System.IO.File.ReadAllLines(filePath);
 
             List<TestCase> cases = new List<TestCase>();
@@ -27,7 +27,7 @@ namespace Tests._0006
             {
                 string line = fileContent[i];
 
-                switch(i % 4)
+                switch (i % 4)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -57,12 +57,12 @@ namespace Tests._0006
 
             List<TestCase> cases = TestCase.ParseTestCasesFromTextFile(@"./0006.txt");
 
-            foreach(TestCase c in cases)
+            foreach (TestCase c in cases)
             {
                 string result = solution.Convert(c.S, c.NumRows);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

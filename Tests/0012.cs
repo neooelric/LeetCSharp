@@ -28,7 +28,7 @@ namespace Tests._0012
             {
                 string line = fileContent[i];
 
-                switch(i % 3)
+                switch (i % 3)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -60,7 +60,7 @@ namespace Tests._0012
                 string result = solution.IntToRoman(c.Num);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.ValueEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }

@@ -61,7 +61,7 @@ namespace Tests._0048
                 solution.Rotate(result);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output),
+                    Helper.TwoDArrayEquals(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatInt2DArray(result))
                     );
             }

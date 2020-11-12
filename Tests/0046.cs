@@ -62,7 +62,7 @@ namespace Tests._0046
                 var result = solution.Permute(Helper.DupArray(c.Nums));
 
                 Assert.True(
-                    Helper.Int2DArrayEqualsRegardlessOfOuterOrder(result, c.Output),
+                    Helper.TwoDArrayEqualsRegardlessOfOuterOrder(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatInt2DArray(result))
                     );
             }

@@ -60,7 +60,7 @@ namespace Tests._0015
                 var result = solution.ThreeSum(c.Nums);
 
                 Assert.True(
-                    Helper.Int2DArrayEqualsRegardlessOfOrder(result, c.Output),
+                    Helper.TwoDArrayEqualsRegardlessOfOrder(result, c.Output),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, Helper.FormatInt2DArray(result))
                     );
             }
