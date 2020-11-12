@@ -57,7 +57,7 @@ namespace Tests._0031
 
             foreach (TestCase c in cases)
             {
-                int[] result = Helper.DupIntArray(c.Nums);
+                int[] result = Helper.DupArray(c.Nums);
                 solution.NextPermutation(result);
 
                 Assert.True(

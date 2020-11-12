@@ -29,14 +29,14 @@ namespace Tests._0037
             {
                 string line = fileContent[i];
 
-                if (i == 0 || (line.StartsWith("[[") && fileContent[i-1].StartsWith("-----")))
+                if (i == 0 || (line.StartsWith("[[") && fileContent[i - 1].StartsWith("-----")))
                 {
                     cases.Add(new TestCase());
                 }
 
                 matrixStr += line;
 
-                if (line.EndsWith("]]") && (i == fileContent.Length - 1 || fileContent[i+1].StartsWith("-----")))
+                if (line.EndsWith("]]") && (i == fileContent.Length - 1 || fileContent[i + 1].StartsWith("-----")))
                 {
                     cases.Last().Output = Helper.ParseChar2DArray(matrixStr);
                     matrixStr = "";
@@ -63,7 +63,7 @@ namespace Tests._0037
 
             foreach (TestCase c in cases)
             {
-                var result = Helper.DupChar2DArray(c.Board);
+                var result = Helper.Dup2DArray(c.Board);
                 solution.SolveSudoku(result);
 
                 Assert.True(

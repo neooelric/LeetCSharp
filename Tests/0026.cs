@@ -28,11 +28,11 @@ namespace Tests._0026
 
             List<TestCase> cases = new List<TestCase>();
 
-            for(int i = 0; i < fileContent.Length; ++i)
+            for (int i = 0; i < fileContent.Length; ++i)
             {
                 string line = fileContent[i];
 
-                switch(i % 4)
+                switch (i % 4)
                 {
                     case 0:
                         cases.Add(new TestCase());
@@ -64,16 +64,16 @@ namespace Tests._0026
 
             foreach (TestCase c in cases)
             {
-                var dupNums = Helper.DupIntArray(c.Nums);
+                var dupNums = Helper.DupArray(c.Nums);
                 var result = solution.RemoveDuplicates(dupNums);
 
                 Assert.True(
-                    Helper.Equals(result, c.Output) 
+                    Helper.Equals(result, c.Output)
                     && Helper.Equals(dupNums.Skip(0).Take(result).ToArray(), c.ModifiedNums),
                     string.Format("Case:{{{0}}}, Result:{{{1}}}", c, result)
                     );
             }
         }
-        
+
     }
 }

@@ -61,7 +61,7 @@ namespace Tests._0040
 
             foreach (TestCase c in cases)
             {
-                var result = solution.CombinationSum2(Helper.DupIntArray(c.Candidates), c.Target);
+                var result = solution.CombinationSum2(Helper.DupArray(c.Candidates), c.Target);
 
                 Assert.True(
                     Helper.Int2DArrayEqualsRegardlessOfOrder(result, c.Output),

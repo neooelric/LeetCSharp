@@ -57,7 +57,7 @@ namespace Tests._0041
 
             foreach (TestCase c in cases)
             {
-                var result = solution.FirstMissingPositive(Helper.DupIntArray(c.Nums));
+                var result = solution.FirstMissingPositive(Helper.DupArray(c.Nums));
 
                 Assert.True(
                     Helper.Equals(result, c.Output),

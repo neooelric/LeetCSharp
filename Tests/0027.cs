@@ -69,7 +69,7 @@ namespace Tests._0027
 
             foreach (TestCase c in cases)
             {
-                int[] dupNums = Helper.DupIntArray(c.Nums);
+                int[] dupNums = Helper.DupArray(c.Nums);
                 var result = solution.RemoveElement(dupNums, c.Val);
 
                 Assert.True(

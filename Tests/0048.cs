@@ -57,7 +57,7 @@ namespace Tests._0048
 
             foreach (TestCase c in cases)
             {
-                var result = Helper.DupInt2DArray(c.Matrix);
+                var result = Helper.Dup2DArray(c.Matrix);
                 solution.Rotate(result);
 
                 Assert.True(

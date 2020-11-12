@@ -59,7 +59,7 @@ namespace Tests._0046
 
             foreach (TestCase c in cases)
             {
-                var result = solution.Permute(Helper.DupIntArray(c.Nums));
+                var result = solution.Permute(Helper.DupArray(c.Nums));
 
                 Assert.True(
                     Helper.Int2DArrayEqualsRegardlessOfOuterOrder(result, c.Output),
