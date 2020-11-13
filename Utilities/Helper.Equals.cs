@@ -8,6 +8,11 @@ namespace Utilities
 {
     public static partial class Helper
     {
+        public static bool ValueEquals(double left, double right)
+        {
+            return Math.Abs(left - right) < 0.000001;
+        }
+
         public static bool ValueEquals<T>(T left, T right)
         {
             if (Nullable.GetUnderlyingType(typeof(T)) != null)
