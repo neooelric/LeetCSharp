@@ -94,7 +94,38 @@ namespace Utilities
             return sb.ToString();
         }
 
-        public static string FormatChar2DArray(char[][] array)
+        public static string FormatString2DArrayAsMatrix(string[][] array)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("[");
+
+            for (int i = 0; i < array.Length; ++i)
+            {
+                sb.AppendLine(" [");
+                for (int j = 0; j < array[i].Length; ++j)
+                {
+                    sb.Append("  " + array[i][j]);
+                    if (j != array[i].Length - 1)
+                    {
+                        sb.Append(",");
+                    }
+                    sb.AppendLine();
+                }
+                sb.AppendLine(" ]");
+                if (i != array.Length - 1)
+                {
+                    sb.Append(",");
+                }
+                sb.AppendLine();
+            }
+
+            sb.Append("]");
+
+            return sb.ToString();
+        }
+
+        public static string FormatChar2DArrayAsMatrix(char[][] array)
         {
             StringBuilder sb = new StringBuilder();
 

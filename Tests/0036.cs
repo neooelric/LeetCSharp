@@ -15,7 +15,7 @@ namespace Tests._0036
 
         public override string ToString()
         {
-            return string.Format("Board:\r\n{0}\r\nOutput:{1}", Helper.FormatChar2DArray(Board), Output);
+            return string.Format("Board:\r\n{0}\r\nOutput:{1}", Helper.FormatChar2DArrayAsMatrix(Board), Output);
         }
 
         public static List<TestCase> ParseTestCaseFromTextFile(string filePath)

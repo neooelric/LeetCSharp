@@ -15,7 +15,7 @@ namespace Tests._0037
 
         public override string ToString()
         {
-            return string.Format("Board:\r\n{0}\r\nOutput:\r\n{1}\r\n", Helper.FormatChar2DArray(Board), Helper.FormatChar2DArray(Output));
+            return string.Format("Board:\r\n{0}\r\nOutput:\r\n{1}\r\n", Helper.FormatChar2DArrayAsMatrix(Board), Helper.FormatChar2DArrayAsMatrix(Output));
         }
 
         public static List<TestCase> ParseTestCaseFromTextFile(string filePath)
@@ -67,8 +67,8 @@ namespace Tests._0037
                 solution.SolveSudoku(result);
 
                 Assert.True(
-                    Helper.ValueEquals(Helper.FormatChar2DArray(result), Helper.FormatChar2DArray(c.Output)),
-                    string.Format("Case:\r\n{{\r\n{0}\r\n}}\r\nResult:\r\n{{\r\n{1}\r\n}}", c, Helper.FormatChar2DArray(result))
+                    Helper.ValueEquals(Helper.FormatChar2DArrayAsMatrix(result), Helper.FormatChar2DArrayAsMatrix(c.Output)),
+                    string.Format("Case:\r\n{{\r\n{0}\r\n}}\r\nResult:\r\n{{\r\n{1}\r\n}}", c, Helper.FormatChar2DArrayAsMatrix(result))
                     );
             }
         }
