@@ -8,6 +8,12 @@ namespace Utilities
 {
     public static partial class Helper
     {
+        public static new bool Equals(Object left, Object right)
+        {
+            throw new NotImplementedException(
+                "calling to static function Helper.Equals is forbidden,"
+                + " you should use Helper.ValueEquals or Helper.ArrayEqualsXXX instead");
+        }
         public static bool ValueEquals(double left, double right)
         {
             return Math.Abs(left - right) < 0.000001;
