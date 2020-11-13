@@ -1,10 +1,10 @@
 # What's this?
 
-This is a LeetCode CSharp Solutions repository.
+This is a LeetCode solutions repository written by C#.
 
-0. All solution are written by CSharp and tested in my laptop(with dotnet core 3.1), and passed the LeetCode test cases (obviously).
-0. For each problem, this repo only offers one solution : not the best, just the normal/main-stream solution. if there is two ways to solve a problem, one is faster but the code logic is kind of twisted and hard to explain, one is slower but the train of thoughts is more unstandable, i'll use the slower one.
-0. I'll write the general train of thoughts in each solution code file's top position, except for those really simple problems
+0. All solutions are written by CSharp and tested in my laptop(with dotnet core 3.1), and passed the LeetCode test cases .
+0. For each problem, this repo only offers one solution : not the best, just the normal/main-stream solution. if there are two ways to solve a problem, one is faster but the code logic is kind of twisted and hard to explain(maybe hard to explain by my poor english), one is slower but the train of thought is more unstandable, i'll use the slower one.
+0. I'll write the general train of thought of each problem, in each solution code file's top position, except for those really simple problems
 0. I'll try my best to write decent and readable code to avoid tedious comments inside method blocks, especially thoses comments just explain the code logic.
 
 # Project Structure
